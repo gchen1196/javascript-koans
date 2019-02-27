@@ -20,7 +20,7 @@ describe("About Arrays", function() {
     expect(array).toEqual([]);
     
     array[0] = 1;
-    expect(array).toEqual([1]);
+    expect(array).toEqual([ 1 ]);
     
     array[1] = 2;
     expect(array).toEqual([1, 2]);
@@ -46,13 +46,13 @@ describe("About Arrays", function() {
   it("should slice arrays", function() {
     var array = ["peanut", "butter", "and", "jelly"];
     
-    expect(array.slice(0, 1)).toEqual(FILL_ME_IN);
-    expect(array.slice(0, 2)).toEqual(FILL_ME_IN);
-    expect(array.slice(2, 2)).toEqual(FILL_ME_IN);
-    expect(array.slice(2, 20)).toEqual(FILL_ME_IN);
-    expect(array.slice(3, 0)).toEqual(FILL_ME_IN);
-    expect(array.slice(3, 100)).toEqual(FILL_ME_IN);
-    expect(array.slice(5, 1)).toEqual(FILL_ME_IN);
+    expect(array.slice(0, 1)).toEqual(['peanut']);
+    expect(array.slice(0, 2)).toEqual(['peanut', 'butter']);
+    expect(array.slice(2, 2)).toEqual([]);
+    expect(array.slice(2, 20)).toEqual(['and', 'jelly']);
+    expect(array.slice(3, 0)).toEqual([]);
+    expect(array.slice(3, 100)).toEqual(['jelly']);
+    expect(array.slice(5, 1)).toEqual([]);
   });
 
   it("should know array references", function() {
@@ -61,37 +61,37 @@ describe("About Arrays", function() {
     function passedByReference(refArray) {
       refArray[1] = "changed in function";
     }
-    passedByReference(array);
-    expect(array[1]).toBe(FILL_ME_IN);
+    passedByReference(array); 
+    expect(array[1]).toBe('changed in function');
 
-    var assignedArray = array;
-    assignedArray[5] = "changed in assignedArray";
-    expect(array[5]).toBe(FILL_ME_IN);
+    var assignedArray = array; ////reassinged array to be called assignedArray
+    assignedArray[5] = "changed in assignedArray"; 
+    expect(array[5]).toBe("changed in assignedArray"); 
 
-    var copyOfArray = array.slice();
+    var copyOfArray = array.slice(); //['zero', 'one'...]
     copyOfArray[3] = "changed in copyOfArray";
-    expect(array[3]).toBe(FILL_ME_IN);
+    expect(array[3]).toBe('three');
   });
 
   it("should push and pop", function() {
     var array = [1, 2];
     array.push(3);
 
-    expect(array).toEqual(FILL_ME_IN);
+    expect(array).toEqual([1, 2, 3]);
     
-    var poppedValue = array.pop();
-    expect(poppedValue).toBe(FILL_ME_IN);
-    expect(array).toEqual(FILL_ME_IN);
+    var poppedValue = array.pop(); //3
+    expect(poppedValue).toBe(3);
+    expect(array).toEqual([1, 2]); //pop manipulates the array
   });
 
   it("should know about shifting arrays", function() {
     var array = [1, 2];
 
-    array.unshift(3);
-    expect(array).toEqual(FILL_ME_IN);
+    array.unshift(3); //array = [3, 1, 2]
+    expect(array).toEqual([3, 1, 2]);
     
-    var shiftedValue = array.shift();
-    expect(shiftedValue).toEqual(FILL_ME_IN);
-    expect(array).toEqual(FILL_ME_IN);
+    var shiftedValue = array.shift(); //2
+    expect(shiftedValue).toEqual(3);
+    expect(array).toEqual([1, 2]);
   });  
 });
