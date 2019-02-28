@@ -1,17 +1,17 @@
 function Muppet(age, hobby) {
-  this.age   = age;
-  this.hobby = hobby; 
+  this.age   = age; //age : 
+  this.hobby = hobby; //hobby : 
   
-  this.answerNanny = function(){
-	return "Everything's cool!";
+  this.answerNanny = function(){ //answerNanny : Everything's cool
+	return "Everything's cool!"; 
   }
 }
 
-function SwedishChef(age, hobby, mood) {
-  Muppet.call(this, age, hobby);
-  this.mood = mood;
+function SwedishChef(age, hobby, mood) { //(2, 'cooking', 'chillin')
+  Muppet.call(this, age, hobby); //(2, 'coding')
+  this.mood = mood; // mood: chilling
   
-  this.cook = function() {
+  this.cook = function() { //cook : "Mmmm soup!"
     return "Mmmm soup!";
   }
 }
@@ -20,12 +20,12 @@ SwedishChef.prototype = new Muppet();
 
 describe("About inheritance", function() {
   beforeEach(function(){
-    this.muppet      = new Muppet(2, "coding");
-  	this.swedishChef = new SwedishChef(2, "cooking", "chillin");
+    this.muppet      = new Muppet(2, "coding"); //{age : 2, hobby: coding, answerNanny: Everything's cool}
+  	this.swedishChef = new SwedishChef(2, "cooking", "chillin"); //{{age : 2, hobby: coding, answerNanny: Everything's cool}, mood: chilling, cook: 'Mmmm soup!'}
   });
   
   it("should be able to call a method on the derived object", function() {
-    expect(this.swedishChef.cook()).toEqual(FILL_ME_IN);
+    expect(this.swedishChef.cook()).toEqual({{'age': 2, 'hobby': 'coding', 'answerNanny': 'Everything\'s cool'}, 'mood': 'chilling', 'cook': 'Mmmm soup!'});
   });
   
   it("should be able to call a method on the base object", function() {
