@@ -63,14 +63,25 @@ describe("About Applying What We Have Learnt", function() {
         sum += i;
       }
     }
-    
-    expect(sum).toBe(FILL_ME_IN);
+    //3 + 5 + 15 + 30 + 45 +...
+    expect(sum).toBe(233168);
   });
 
   it("should add all the natural numbers below 1000 that are multiples of 3 or 5 (functional)", function () {
-    var sum = FILL_ME_IN;    /* try chaining range() and reduce() */
+    var sum = 0;    /* try chaining range() and reduce() */
+    //use _.range[1, 1000] to get [1, 2, 3...1000]
+    //use .reduce that receives a function with parameters acc, num
+    //if num divisible by 3 or by 5, then acc += num 
+    //return acc 
+    //output: sum
+    sum = _.range(0, 1000).reduce(function(acc, num) {
+      if (num % 3 === 0 || num % 5 === 0) {
+        acc += num;
+      }
+      return acc; 
+    })
 
-    expect(233168).toBe(FILL_ME_IN);
+    expect(233168).toBe(sum);
   });
 
   /*********************************************************************************/
@@ -83,15 +94,39 @@ describe("About Applying What We Have Learnt", function() {
         }
     }
 
-    expect(ingredientCount['mushrooms']).toBe(FILL_ME_IN);
+    expect(ingredientCount['mushrooms']).toBe(2);
   });
 
   it("should count the ingredient occurrence (functional)", function () {
-    var ingredientCount = { "{ingredient name}": 0 };
+    var ingredientCount = { "{ingredient name}": 0};
+    //use chain method to chain each method 
+    //use map to get the value (array) of ingredients in each obj 
+    //return 2-D array [[a, b, c], [a, b, c]]
+    //use flatten method to change from 2-D array to 1-D array [a, b, c, a, b, c]
+    //use reduce method to return obj = ingredientCount
+    //function(obj, ingredient)
+    //if ingredient exists in obj, then obj[ingredient]++
+    //else obj[ingredient] = 1
+
+    _(products).chain()
+              .map(function(obj) {return obj['ingredients']}) //[[a, b, c], [a, b, c]]
+              .flatten() //[a, b, c, a, b, c]
+              .reduce(function(result, ingredient) {
+                if (ingredient in result) {
+                  result[ingredient] += 1;
+                };
+                else {
+                  result[ingredient] = 1; 
+                }
+                return result;
+              }, {});//{a : 2, b : 2, c : 2}
+                        
+
+
 
     /* chain() together map(), flatten() and reduce() */
 
-    expect(ingredientCount['mushrooms']).toBe(FILL_ME_IN);
+    expect(ingredientCount["mushrooms"]).toBe(2);
   });
 
   /*********************************************************************************/
