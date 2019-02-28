@@ -18,27 +18,34 @@ describe("About Applying What We Have Learnt", function() {
   it("given I'm allergic to nuts and hate mushrooms, it should find a pizza I can eat (imperative)", function () {
     var i,j,hasMushrooms, productsICanEat = [];
 
-    for (i = 0; i < products.length; i+=1) {
-        if (products[i].containsNuts === false) {
-            hasMushrooms = false;
+    for (i = 0; i < products.length; i+=1) { //get products[0]
+        if (products[i].containsNuts === false) { //if false === false => true 
+            hasMushrooms = false; //
             for (j = 0; j < products[i].ingredients.length; j+=1) {
-               if (products[i].ingredients[j] === "mushrooms") {
-                  hasMushrooms = true;
+               if (products[i].ingredients[j] === "mushrooms") { //products[0].ingredients[2] => 'mushrooms' === 'mushrooms', true
+                  hasMushrooms = true; 
                }
             }
-            if (!hasMushrooms) productsICanEat.push(products[i]);
+            if (!hasMushrooms) productsICanEat.push(products[i]); //products[0] not pushed because hasMushrooms = true 
         }
     }
-
-    expect(productsICanEat.length).toBe(FILL_ME_IN);
+    //productsICanEat = [products[1]]
+    expect(productsICanEat.length).toBe(1);
   });
 
   it("given I'm allergic to nuts and hate mushrooms, it should find a pizza I can eat (functional)", function () {
       var productsICanEat = [];
+      //input: none
+      //output: array
+      //allergic to nuts: containsNuts = false 
+      //hate mushrooms: no 'mushrooms' in ingredients array
+      //use filter method 
+      //products.filter(pizza that containsNuts = false && !ingredients.include('mushrooms')) => productsICanEat array
+      productsICanEat = products.filter(function(pizza) {pizza['containsNuts'] === false && !pizza['ingredients'].includes('mushrooms')})
 
       /* solve using filter() & all() / any() */
 
-      expect(productsICanEat.length).toBe(FILL_ME_IN);
+      expect(productsICanEat.length).toBe(1);
   });
 
   /*********************************************************************************/
