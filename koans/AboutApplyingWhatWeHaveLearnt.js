@@ -41,9 +41,14 @@ describe("About Applying What We Have Learnt", function() {
       //hate mushrooms: no 'mushrooms' in ingredients array
       //use filter method 
       //products.filter(pizza that containsNuts = false && !ingredients.include('mushrooms')) => productsICanEat array
-      productsICanEat = products.filter(function(pizza) {pizza['containsNuts'] === false && !pizza['ingredients'].includes('mushrooms')})
-
+      function safePizza(pizza) {
+        if (pizza['containsNuts'] === false && !(pizza['ingredients'].includes('mushrooms'))) {
+          return true;
+        }
+        return false; 
+      }
       /* solve using filter() & all() / any() */
+      productsICanEat = products.filter(safePizza);
 
       expect(productsICanEat.length).toBe(1);
   });
